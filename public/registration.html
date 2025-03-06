@@ -12,18 +12,49 @@
     </header>
     <main>
         <form action="submit_registration" method="post">
-            <label for="team-name">Team Name:</label>
-            <input type="text" id="team-name" name="team-name" required><br>
-            <label for="city">City:</label>
-            <select id="city" name="city" required>
+            <h2>Player 1</h2>
+            <label for="player1-first-name">First Name:</label>
+            <input type="text" id="player1-first-name" name="player1-first-name" required><br>
+            
+            <label for="player1-last-name">Last Name:</label>
+            <input type="text" id="player1-last-name" name="player1-last-name" required><br>
+            
+            <label for="player1-city">City:</label>
+            <select id="player1-city" name="player1-city" required>
                 <option value="chicago">Chicago</option>
                 <option value="detroit">Detroit</option>
                 <option value="columbus">Columbus</option>
                 <option value="atlanta">Atlanta</option>
                 <option value="dc">Washington D.C.</option>
             </select><br>
-            <label for="players">Number of Players:</label>
-            <input type="number" id="players" name="players" min="1" required><br>
+            
+            <h2>Player 2</h2>
+            <label for="player2-first-name">First Name:</label>
+            <input type="text" id="player2-first-name" name="player2-first-name" required><br>
+            
+            <label for="player2-last-name">Last Name:</label>
+            <input type="text" id="player2-last-name" name="player2-last-name" required><br>
+            
+            <label for="player2-city">City:</label>
+            <select id="player2-city" name="player2-city" required>
+                <option value="chicago">Chicago</option>
+                <option value="detroit">Detroit</option>
+                <option value="columbus">Columbus</option>
+                <option value="atlanta">Atlanta</option>
+                <option value="dc">Washington D.C.</option>
+            </select><br>
+            
+            <h2>Team Selection</h2>
+            <p>Select the city your team will represent:</p>
+            <select id="team-city" name="team-city" required>
+                <option value="chicago">Chicago</option>
+                <option value="detroit">Detroit</option>
+                <option value="columbus">Columbus</option>
+                <option value="atlanta">Atlanta</option>
+                <option value="dc">Washington D.C.</option>
+                <option value="other">Other</option>
+            </select><br>
+            
             <button type="submit">Register</button>
         </form>
     </main>
@@ -32,4 +63,3 @@
     </footer>
 </body>
 </html>
-
