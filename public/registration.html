@@ -62,26 +62,12 @@
         button:hover {
             background-color: darkred;
         }
-        .card-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .card-icons img {
-            width: 50px;
-            height: auto;
-        }
     </style>
 </head>
 <body>
     <header>
         GameGrid Registration
     </header>
-    <div class="card-icons">
-        <img src="../public/ace-spades.png" alt="Ace of Spades">
-        <img src="../public/king-diamonds.png" alt="King of Diamonds">
-    </div>
     <main>
         <form action="submit_registration" method="post">
             <h2>Player Registration</h2>
@@ -106,6 +92,28 @@
                 <option value="dc">Washington D.C.</option>
             </select>
             
+            <h2>Partner Information</h2>
+            <label for="partner-first-name">Partner's First Name:</label>
+            <input type="text" id="partner-first-name" name="partner-first-name" required>
+            
+            <label for="partner-last-name">Partner's Last Name:</label>
+            <input type="text" id="partner-last-name" name="partner-last-name" required>
+            
+            <label for="partner-nickname">Partner's Nickname:</label>
+            <input type="text" id="partner-nickname" name="partner-nickname">
+            
+            <label for="partner-phone">Partner's Phone Number:</label>
+            <input type="tel" id="partner-phone" name="partner-phone" required>
+            
+            <label for="partner-city">Partner's City:</label>
+            <select id="partner-city" name="partner-city" required>
+                <option value="chicago">Chicago</option>
+                <option value="detroit">Detroit</option>
+                <option value="columbus">Columbus</option>
+                <option value="atlanta">Atlanta</option>
+                <option value="dc">Washington D.C.</option>
+            </select>
+            
             <h2>Tournament Selection & Payment Tracking</h2>
             <table>
                 <tr>
@@ -123,6 +131,22 @@
                     <td><input type="checkbox" name="friday-am-sidepot" value="yes"></td>
                     <td>$50</td>
                     <td><select name="friday-am-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
+                </tr>
+                <tr>
+                    <td>Friday PM Tournament</td>
+                    <td><input type="checkbox" name="tournament[]" value="friday-pm"></td>
+                    <td><input type="text" name="friday-pm-partner"></td>
+                    <td><input type="checkbox" name="friday-pm-sidepot" value="yes"></td>
+                    <td>$50</td>
+                    <td><select name="friday-pm-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
+                </tr>
+                <tr>
+                    <td>Saturday AM Tournament</td>
+                    <td><input type="checkbox" name="tournament[]" value="saturday-am"></td>
+                    <td><input type="text" name="saturday-am-partner"></td>
+                    <td><input type="checkbox" name="saturday-am-sidepot" value="yes"></td>
+                    <td>$50</td>
+                    <td><select name="saturday-am-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
                 </tr>
             </table>
             <h3>Total Amount Owed: <span id="total-cost">$0</span></h3>
