@@ -72,6 +72,33 @@
             <input type="checkbox" id="saturday-pm" name="tournament" value="saturday-pm">
             <label for="saturday-pm">Saturday PM Tournament</label><br>
             
+            <h2>Payment Details</h2>
+            <p>Each player must pay for their selected tournaments and optional side pot entry.</p>
+            
+            <h3>Player 1 Payment</h3>
+            <label for="player1-tournament-cost">Tournament Cost:</label>
+            <input type="text" id="player1-tournament-cost" name="player1-tournament-cost" readonly><br>
+            <label for="player1-side-pot">Side Pot Entry:</label>
+            <input type="checkbox" id="player1-side-pot" name="player1-side-pot" value="yes">
+            <label for="player1-side-pot">Opt into Side Pot</label><br>
+            <label for="player1-paid">Paid:</label>
+            <select id="player1-paid" name="player1-paid" required>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select><br>
+            
+            <h3>Player 2 Payment</h3>
+            <label for="player2-tournament-cost">Tournament Cost:</label>
+            <input type="text" id="player2-tournament-cost" name="player2-tournament-cost" readonly><br>
+            <label for="player2-side-pot">Side Pot Entry:</label>
+            <input type="checkbox" id="player2-side-pot" name="player2-side-pot" value="yes">
+            <label for="player2-side-pot">Opt into Side Pot</label><br>
+            <label for="player2-paid">Paid:</label>
+            <select id="player2-paid" name="player2-paid" required>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select><br>
+            
             <p>Note: Players may register for multiple tournaments with different partners.</p>
             
             <button type="submit">Register</button>
