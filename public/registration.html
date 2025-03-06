@@ -22,6 +22,9 @@
             <label for="player-nickname">Nickname:</label>
             <input type="text" id="player-nickname" name="player-nickname"><br>
             
+            <label for="player-phone">Phone Number:</label>
+            <input type="tel" id="player-phone" name="player-phone" required><br>
+            
             <label for="player-city">City:</label>
             <select id="player-city" name="player-city" required>
                 <option value="chicago">Chicago</option>
@@ -30,6 +33,13 @@
                 <option value="atlanta">Atlanta</option>
                 <option value="dc">Washington D.C.</option>
             </select><br>
+            
+            <h2>Partner Information</h2>
+            <label for="partner-first-name">Partner's First Name:</label>
+            <input type="text" id="partner-first-name" name="partner-first-name" required><br>
+            
+            <label for="partner-last-name">Partner's Last Name:</label>
+            <input type="text" id="partner-last-name" name="partner-last-name" required><br>
             
             <h2>Tournament Selection & Payment Tracking</h2>
             <p>Select the tournaments you are registering for and specify partner changes if needed:</p>
@@ -45,11 +55,11 @@
                     <th>Paid</th>
                 </tr>
                 <tr>
-                    <td>Friday AM Tournament</td>
-                    <td><input type="checkbox" name="tournament[]" value="friday-am"></td>
-                    <td><input type="text" name="friday-am-partner"></td>
-                    <td><input type="checkbox" name="friday-am-sidepot" value="yes"></td>
-                    <td><select name="friday-am-team">
+                    <td><input type="text" name="tournament-1-name" value="Friday AM Tournament"></td>
+                    <td><input type="checkbox" name="tournament[]" value="tournament-1"></td>
+                    <td><input type="text" name="tournament-1-partner"></td>
+                    <td><input type="checkbox" name="tournament-1-sidepot" value="yes"></td>
+                    <td><select name="tournament-1-team">
                         <option value="chicago">Chicago</option>
                         <option value="detroit">Detroit</option>
                         <option value="columbus">Columbus</option>
@@ -57,15 +67,15 @@
                         <option value="dc">Washington D.C.</option>
                         <option value="other">Other</option>
                     </select></td>
-                    <td>$50</td>
-                    <td><select name="friday-am-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
+                    <td><input type="number" name="tournament-1-cost" value="50"></td>
+                    <td><select name="tournament-1-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
                 </tr>
                 <tr>
-                    <td>Friday PM Tournament</td>
-                    <td><input type="checkbox" name="tournament[]" value="friday-pm"></td>
-                    <td><input type="text" name="friday-pm-partner"></td>
-                    <td><input type="checkbox" name="friday-pm-sidepot" value="yes"></td>
-                    <td><select name="friday-pm-team">
+                    <td><input type="text" name="tournament-2-name" value="Friday PM Tournament"></td>
+                    <td><input type="checkbox" name="tournament[]" value="tournament-2"></td>
+                    <td><input type="text" name="tournament-2-partner"></td>
+                    <td><input type="checkbox" name="tournament-2-sidepot" value="yes"></td>
+                    <td><select name="tournament-2-team">
                         <option value="chicago">Chicago</option>
                         <option value="detroit">Detroit</option>
                         <option value="columbus">Columbus</option>
@@ -73,24 +83,8 @@
                         <option value="dc">Washington D.C.</option>
                         <option value="other">Other</option>
                     </select></td>
-                    <td>$50</td>
-                    <td><select name="friday-pm-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
-                </tr>
-                <tr>
-                    <td>Saturday AM Tournament</td>
-                    <td><input type="checkbox" name="tournament[]" value="saturday-am"></td>
-                    <td><input type="text" name="saturday-am-partner"></td>
-                    <td><input type="checkbox" name="saturday-am-sidepot" value="yes"></td>
-                    <td><select name="saturday-am-team">
-                        <option value="chicago">Chicago</option>
-                        <option value="detroit">Detroit</option>
-                        <option value="columbus">Columbus</option>
-                        <option value="atlanta">Atlanta</option>
-                        <option value="dc">Washington D.C.</option>
-                        <option value="other">Other</option>
-                    </select></td>
-                    <td>$50</td>
-                    <td><select name="saturday-am-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
+                    <td><input type="number" name="tournament-2-cost" value="50"></td>
+                    <td><select name="tournament-2-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
                 </tr>
             </table>
             
