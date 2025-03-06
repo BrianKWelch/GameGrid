@@ -55,49 +55,59 @@
                 <option value="other">Other</option>
             </select><br>
             
-            <h2>Tournament Selection</h2>
-            <p>Select the tournaments you are registering for:</p>
-            <input type="checkbox" id="friday-am" name="tournament" value="friday-am">
-            <label for="friday-am">Friday AM Tournament</label><br>
+            <h2>Tournament Selection & Payment Tracking</h2>
+            <p>Select the tournaments you are registering for and specify partner changes if needed:</p>
             
-            <input type="checkbox" id="friday-pm" name="tournament" value="friday-pm">
-            <label for="friday-pm">Friday PM Tournament</label><br>
-            
-            <input type="checkbox" id="saturday-am" name="tournament" value="saturday-am">
-            <label for="saturday-am">Saturday AM Tournament</label><br>
-            
-            <input type="checkbox" id="saturday-main" name="tournament" value="saturday-main">
-            <label for="saturday-main">Saturday Main Event</label><br>
-            
-            <input type="checkbox" id="saturday-pm" name="tournament" value="saturday-pm">
-            <label for="saturday-pm">Saturday PM Tournament</label><br>
-            
-            <h2>Payment Details</h2>
-            <p>Each player must pay for their selected tournaments and optional side pot entry.</p>
-            
-            <h3>Player 1 Payment</h3>
-            <label for="player1-tournament-cost">Tournament Cost:</label>
-            <input type="text" id="player1-tournament-cost" name="player1-tournament-cost" readonly><br>
-            <label for="player1-side-pot">Side Pot Entry:</label>
-            <input type="checkbox" id="player1-side-pot" name="player1-side-pot" value="yes">
-            <label for="player1-side-pot">Opt into Side Pot</label><br>
-            <label for="player1-paid">Paid:</label>
-            <select id="player1-paid" name="player1-paid" required>
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-            </select><br>
-            
-            <h3>Player 2 Payment</h3>
-            <label for="player2-tournament-cost">Tournament Cost:</label>
-            <input type="text" id="player2-tournament-cost" name="player2-tournament-cost" readonly><br>
-            <label for="player2-side-pot">Side Pot Entry:</label>
-            <input type="checkbox" id="player2-side-pot" name="player2-side-pot" value="yes">
-            <label for="player2-side-pot">Opt into Side Pot</label><br>
-            <label for="player2-paid">Paid:</label>
-            <select id="player2-paid" name="player2-paid" required>
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-            </select><br>
+            <table border="1">
+                <tr>
+                    <th>Tournament</th>
+                    <th>Register</th>
+                    <th>Partner (if different)</th>
+                    <th>Side Pot</th>
+                    <th>Cost</th>
+                    <th>Paid</th>
+                </tr>
+                <tr>
+                    <td>Friday AM Tournament</td>
+                    <td><input type="checkbox" name="tournament[]" value="friday-am"></td>
+                    <td><input type="text" name="friday-am-partner"></td>
+                    <td><input type="checkbox" name="friday-am-sidepot" value="yes"></td>
+                    <td>$50</td>
+                    <td><select name="friday-am-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
+                </tr>
+                <tr>
+                    <td>Friday PM Tournament</td>
+                    <td><input type="checkbox" name="tournament[]" value="friday-pm"></td>
+                    <td><input type="text" name="friday-pm-partner"></td>
+                    <td><input type="checkbox" name="friday-pm-sidepot" value="yes"></td>
+                    <td>$50</td>
+                    <td><select name="friday-pm-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
+                </tr>
+                <tr>
+                    <td>Saturday AM Tournament</td>
+                    <td><input type="checkbox" name="tournament[]" value="saturday-am"></td>
+                    <td><input type="text" name="saturday-am-partner"></td>
+                    <td><input type="checkbox" name="saturday-am-sidepot" value="yes"></td>
+                    <td>$50</td>
+                    <td><select name="saturday-am-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
+                </tr>
+                <tr>
+                    <td>Saturday Main Event</td>
+                    <td><input type="checkbox" name="tournament[]" value="saturday-main"></td>
+                    <td><input type="text" name="saturday-main-partner"></td>
+                    <td><input type="checkbox" name="saturday-main-sidepot" value="yes"></td>
+                    <td>$50</td>
+                    <td><select name="saturday-main-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
+                </tr>
+                <tr>
+                    <td>Saturday PM Tournament</td>
+                    <td><input type="checkbox" name="tournament[]" value="saturday-pm"></td>
+                    <td><input type="text" name="saturday-pm-partner"></td>
+                    <td><input type="checkbox" name="saturday-pm-sidepot" value="yes"></td>
+                    <td>$50</td>
+                    <td><select name="saturday-pm-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
+                </tr>
+            </table>
             
             <p>Note: Players may register for multiple tournaments with different partners.</p>
             
