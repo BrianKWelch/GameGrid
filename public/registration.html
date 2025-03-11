@@ -79,10 +79,9 @@
                 city: document.getElementById('player-city').value,
                 partnerFirstName: document.getElementById('partner-first-name').value,
                 partnerLastName: document.getElementById('partner-last-name').value,
-                partnerNickname: document.getElementById('partner-nickname').value,
+                
                 tournaments: Array.from(document.querySelectorAll("input[name='tournament[]']:checked")).map(el => el.value),
-                sidePot: Array.from(document.querySelectorAll("input[name$='-sidepot']:checked")).map(el => el.value),
-                paid: Array.from(document.querySelectorAll("select[name$='-paid']")).map(el => el.value)
+               
             };
             
             console.log("Form Data:", formData);
