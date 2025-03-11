@@ -5,6 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration - GameGrid</title>
     <link rel="stylesheet" href="../src/css/style.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: red;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid white;
+            text-align: center;
+        }
+        button {
+            background-color: red;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+    </style>
     <script>
         function submitForm(event) {
             event.preventDefault();
@@ -15,11 +73,14 @@
                 nickname: document.getElementById('player-nickname').value,
                 phoneNumber: document.getElementById('player-phone').value,
                 city: document.getElementById('player-city').value,
-                tournamentName: document.querySelector('input[name="tournament[]"]:checked').value,
                 partnerFirstName: document.getElementById('partner-first-name').value,
                 partnerLastName: document.getElementById('partner-last-name').value,
-                sidePot: document.querySelector('input[name="side-pot"]:checked') ? "Yes" : "No",
-                paid: document.querySelector('input[name="paid"]:checked') ? "Yes" : "No"
+                partnerNickname: document.getElementById('partner-nickname').value,
+                partnerPhone: document.getElementById('partner-phone').value,
+                partnerCity: document.getElementById('partner-city').value,
+                tournaments: Array.from(document.querySelectorAll("input[name='tournament[]']:checked")).map(el => el.value),
+                sidePot: Array.from(document.querySelectorAll("input[name$='-sidepot']:checked")).map(el => el.value),
+                paid: Array.from(document.querySelectorAll("select[name$='-paid']")).map(el => el.value)
             };
 
             fetch("https://script.google.com/macros/s/AKfycby_NFbhqbS15FmRisq9bwk1zvfNIEuyWVSf0lX_VL-0OaP-x4jJJAjDT8qhyrOa7Y7b/exec", {
@@ -80,12 +141,6 @@
             <input type="checkbox" name="tournament[]" value="Saturday AM Tournament"> Saturday AM Tournament<br>
             <input type="checkbox" name="tournament[]" value="Saturday PM Tournament"> Saturday PM Tournament<br>
             <input type="checkbox" name="tournament[]" value="Saturday Main Event"> Saturday Main Event<br>
-            
-            <label>Side Pot:</label>
-            <input type="checkbox" name="side-pot"> Yes<br>
-            
-            <label>Paid:</label>
-            <input type="checkbox" name="paid"> Yes<br>
             
             <button type="submit">Register</button>
         </form>
