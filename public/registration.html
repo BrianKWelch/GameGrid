@@ -5,71 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration - GameGrid</title>
     <link rel="stylesheet" href="../src/css/style.css">
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const formData = {
+                firstName: document.getElementById('player-first-name').value,
+                lastName: document.getElementById('player-last-name').value,
+                nickname: document.getElementById('player-nickname').value,
+                phoneNumber: document.getElementById('player-phone').value,
+                city: document.getElementById('player-city').value,
+                tournamentName: document.querySelector('input[name="tournament[]"]:checked').value,
+                partnerFirstName: document.getElementById('partner-first-name').value,
+                partnerLastName: document.getElementById('partner-last-name').value,
+                sidePot: document.querySelector('input[name="side-pot"]:checked') ? "Yes" : "No",
+                paid: document.querySelector('input[name="paid"]:checked') ? "Yes" : "No"
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycby_NFbhqbS15FmRisq9bwk1zvfNIEuyWVSf0lX_VL-0OaP-x4jJJAjDT8qhyrOa7Y7b/exec", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Registration submitted successfully!");
+                document.getElementById("registration-form").reset();
+            })
+            .catch(error => {
+                console.error("Error submitting registration:", error);
+                alert("Error submitting registration. Please try again.");
+            });
         }
-        header {
-            background-color: red;
-            padding: 15px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        form {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            margin: 20px auto;
-            width: 90%;
-            max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid white;
-            text-align: center;
-        }
-        button {
-            background-color: red;
-            color: white;
-            padding: 15px;
-            font-size: 18px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: darkred;
-        }
-    </style>
+    </script>
 </head>
 <body>
     <header>
         GameGrid Registration
     </header>
     <main>
-        <form action="submit_registration" method="post">
+        <form id="registration-form" onsubmit="submitForm(event)">
             <h2>Player Registration</h2>
             <label for="player-first-name">First Name:</label>
             <input type="text" id="player-first-name" name="player-first-name" required>
@@ -99,65 +74,19 @@
             <label for="partner-last-name">Partner's Last Name:</label>
             <input type="text" id="partner-last-name" name="partner-last-name" required>
             
-            <label for="partner-nickname">Partner's Nickname:</label>
-            <input type="text" id="partner-nickname" name="partner-nickname">
-            
-            <label for="partner-phone">Partner's Phone Number:</label>
-            <input type="tel" id="partner-phone" name="partner-phone" required>
-            
-            <label for="partner-city">Partner's City:</label>
-            <select id="partner-city" name="partner-city" required>
-                <option value="chicago">Chicago</option>
-                <option value="detroit">Detroit</option>
-                <option value="columbus">Columbus</option>
-                <option value="atlanta">Atlanta</option>
-                <option value="dc">Washington D.C.</option>
-            </select>
-            
             <h2>Tournament Selection & Payment Tracking</h2>
-            <table>
-                <tr>
-                    <th>Tournament</th>
-                    <th>Register</th>
-                    <th>Partner</th>
-                    <th>Side Pot</th>
-                    <th>Cost</th>
-                    <th>Paid</th>
-                </tr>
-                <tr>
-                    <td>Friday AM Tournament</td>
-                    <td><input type="checkbox" name="tournament[]" value="friday-am"></td>
-                    <td><input type="text" name="friday-am-partner"></td>
-                    <td><input type="checkbox" name="friday-am-sidepot" value="yes"></td>
-                    <td>$50</td>
-                    <td><select name="friday-am-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
-                </tr>
-                <tr>
-                    <td>Friday PM Tournament</td>
-                    <td><input type="checkbox" name="tournament[]" value="friday-pm"></td>
-                    <td><input type="text" name="friday-pm-partner"></td>
-                    <td><input type="checkbox" name="friday-pm-sidepot" value="yes"></td>
-                    <td>$50</td>
-                    <td><select name="friday-pm-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
-                </tr>
-                <tr>
-                    <td>Friday Late Tournament</td>
-                    <td><input type="checkbox" name="tournament[]" value="friday-pm"></td>
-                    <td><input type="text" name="friday-pm-partner"></td>
-                    <td><input type="checkbox" name="friday-pm-sidepot" value="yes"></td>
-                    <td>$50</td>
-                    <td><select name="friday-pm-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
-                </tr>
-                <tr>
-                    <td>Saturday AM Tournament</td>
-                    <td><input type="checkbox" name="tournament[]" value="saturday-am"></td>
-                    <td><input type="text" name="saturday-am-partner"></td>
-                    <td><input type="checkbox" name="saturday-am-sidepot" value="yes"></td>
-                    <td>$50</td>
-                    <td><select name="saturday-am-paid"><option value="no">No</option><option value="yes">Yes</option></select></td>
-                </tr>
-            </table>
-            <h3>Total Amount Owed: <span id="total-cost">$0</span></h3>
+            <input type="checkbox" name="tournament[]" value="Friday AM Tournament"> Friday AM Tournament<br>
+            <input type="checkbox" name="tournament[]" value="Friday PM Tournament"> Friday PM Tournament<br>
+            <input type="checkbox" name="tournament[]" value="Saturday AM Tournament"> Saturday AM Tournament<br>
+            <input type="checkbox" name="tournament[]" value="Saturday PM Tournament"> Saturday PM Tournament<br>
+            <input type="checkbox" name="tournament[]" value="Saturday Main Event"> Saturday Main Event<br>
+            
+            <label>Side Pot:</label>
+            <input type="checkbox" name="side-pot"> Yes<br>
+            
+            <label>Paid:</label>
+            <input type="checkbox" name="paid"> Yes<br>
+            
             <button type="submit">Register</button>
         </form>
     </main>
