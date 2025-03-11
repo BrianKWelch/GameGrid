@@ -90,6 +90,7 @@
             fetch("https://script.google.com/macros/s/AKfycbxj11yFCzWbmB6DYV3B8vTwEQjzgDgJKoa2zNpsDCQcWqn_0rQ7aW9Q719hry45Hyu-/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                mode: "cors",
                 body: JSON.stringify(formData)
             })
             .then(response => response.text())
