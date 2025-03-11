@@ -87,22 +87,29 @@
             
             console.log("Form Data:", formData);
             
-            fetch("https://script.google.com/macros/s/AKfycbxj11yFCzWbmB6DYV3B8vTwEQjzgDgJKoa2zNpsDCQcWqn_0rQ7aW9Q719hry45Hyu-/exec", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                mode: "cors",
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.text())
-            .then(data => {
-                console.log("Response received:", data);
-                alert("Registration submitted successfully!");
-                document.getElementById("registration-form").reset();
-            })
-            .catch(error => {
-                console.error("Error submitting registration:", error);
-                alert("Error submitting registration. Please try again.");
-            });
+    fetch("YOUR_NEW_WEB_APP_URL_HERE", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+    },
+        mode: "cors",
+        body: JSON.stringify(formData)
+})
+.then(response => response.json())
+.then(data => {
+    console.log("Response received:", data);
+    if (data.status === "success") {
+        alert("Registration submitted successfully!");
+        document.getElementById("registration-form").reset();
+    } else {
+        alert("Error submitting registration: " + data.message);
+    }
+})
+.catch(error => {
+    console.error("Error submitting registration:", error);
+    alert("Error submitting registration. Please try again.");
+});
+
         }
     </script>
 </head>
