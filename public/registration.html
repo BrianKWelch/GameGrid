@@ -66,6 +66,7 @@
     <script>
         function submitForm(event) {
             event.preventDefault();
+            console.log("Submit button clicked");
             
             const formData = {
                 firstName: document.getElementById('player-first-name').value,
@@ -82,7 +83,9 @@
                 sidePot: Array.from(document.querySelectorAll("input[name$='-sidepot']:checked")).map(el => el.value),
                 paid: Array.from(document.querySelectorAll("select[name$='-paid']")).map(el => el.value)
             };
-
+            
+            console.log("Form Data:", formData);
+            
             fetch("https://script.google.com/macros/s/AKfycby_NFbhqbS15FmRisq9bwk1zvfNIEuyWVSf0lX_VL-0OaP-x4jJJAjDT8qhyrOa7Y7b/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -90,6 +93,7 @@
             })
             .then(response => response.text())
             .then(data => {
+                console.log("Response received:", data);
                 alert("Registration submitted successfully!");
                 document.getElementById("registration-form").reset();
             })
