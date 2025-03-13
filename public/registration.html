@@ -87,12 +87,12 @@
             
             console.log("Form Data:", formData);
             
-   fetch("https://script.google.com/macros/s/AKfycbwBMDYjNphcRaM7_9rLuDiH1QrXg-EjbAzFWHYfipVo4yNiFna6SE2kNCy9iNbOvLpW/exec", {
+   fetch("https://script.google.com/macros/s/AKfycbwV_SEQX-xCElXDyQE84c5c2KhYA6OMrFIGgP3XpWFY3QeCHD74PimBU8EnPw0uUJq4/exec", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(formData)
 })
-.then(response => response.text()) // ✅ Fix for JSON errors
+.then(response => response.text())
 .then(text => {
     try {
         return JSON.parse(text);
