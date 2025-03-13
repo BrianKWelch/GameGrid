@@ -87,15 +87,19 @@
             
             console.log("Form Data:", formData);
             
-    fetch("https://script.google.com/macros/s/AKfycbyvjz8HxPQ4OZrbINzUMBHtTKqLU7PA_LbwGUnD8vN95qXVeLRChTI9mCVDtP-3Gywi/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-    },
-        mode: "cors",
-        body: JSON.stringify(formData)
+   fetch("https://script.google.com/macros/s/AKfycbwBMDYjNphcRaM7_9rLuDiH1QrXg-EjbAzFWHYfipVo4yNiFna6SE2kNCy9iNbOvLpW/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
 })
-.then(response => response.json())
+.then(response => response.text()) // ✅ Fix for JSON errors
+.then(text => {
+    try {
+        return JSON.parse(text);
+    } catch (error) {
+        throw new Error("Invalid JSON response");
+    }
+})
 .then(data => {
     console.log("Response received:", data);
     if (data.status === "success") {
@@ -109,6 +113,7 @@
     console.error("Error submitting registration:", error);
     alert("Error submitting registration. Please try again.");
 });
+
 
         }
     </script>
