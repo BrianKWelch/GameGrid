@@ -65,61 +65,64 @@
     </style>
     <script>
         const SUPABASE_URL = "https://xexynghytnzghcespiod.supabase.co"; // Replace with your Supabase URL
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhleHluZ2h5dG56Z2hjZXNwaW9kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE4MzAyMTAsImV4cCI6MjA1NzQwNjIxMH0.tUdQFoIvb1ba4y_qHKB6K3EHUAFcFGoUnsdLDRXgyb4"; // Replace with your Supabase Anon Key
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhleHluZ2h5dG56Z2hjZXNwaW9kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE4MzAyMTAsImV4cCI6MjA1NzQwNjIxMH0.tUdQFoIvb1ba4y_qHKB6K3EHUAFcFGoUnsdLDRXgyb4"; // Replace with your Supabase Anon Key
 
-        async function submitForm(event) {
-            event.preventDefault();
+async function submitForm(event) {
+    event.preventDefault();
 
-            const formData = {
-                first_name: document.getElementById('player-first-name').value.trim(),
-                last_name: document.getElementById('player-last-name').value.trim(),
-                nickname: document.getElementById('player-nickname').value.trim(),
-                phone_number: document.getElementById('player-phone').value.trim(),
-                city: document.getElementById('player-city').value,
-                partner_first_name: document.getElementById('partner-first-name').value.trim(),
-                partner_last_name: document.getElementById('partner-last-name').value.trim(),
-                partner_nickname: document.getElementById('partner-nickname').value.trim(),
-                partner_phone: document.getElementById('partner-phone').value.trim(),
-                partner_city: document.getElementById('partner-city').value,
-                tournaments: Array.from(document.querySelectorAll("input[name='tournament[]']:checked")).map(el => el.value),
-            };
+    const formData = {
+        first_name: document.getElementById('player-first-name').value.trim(),
+        last_name: document.getElementById('player-last-name').value.trim(),
+        nickname: document.getElementById('player-nickname').value.trim(),
+        phone_number: document.getElementById('player-phone').value.trim(),
+        city: document.getElementById('player-city').value,
+        partner_first_name: document.getElementById('partner-first-name').value.trim(),
+        partner_last_name: document.getElementById('partner-last-name').value.trim(),
+        partner_nickname: document.getElementById('partner-nickname').value.trim(),
+        partner_phone: document.getElementById('partner-phone').value.trim(),
+        partner_city: document.getElementById('partner-city').value,
+        tournaments: Array.from(document.querySelectorAll("input[name='tournament[]']:checked")).map(el => el.value),
+    };
 
-            console.log("Submitting to Supabase:", formData);
+    console.log("Submitting to Supabase:", formData);
 
-            try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/registrations`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "apikey": SUPABASE_ANON_KEY,
-                        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
-                    },
-                    body: JSON.stringify(formData),
-                });
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/registrations`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "apikey": SUPABASE_ANON_KEY,
+                "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+            },
+            body: JSON.stringify(formData),
+        });
 
-                // Check if response is empty or not valid JSON
-                const responseText = await response.text();
-                console.log("Raw Response:", responseText);
+        const responseText = await response.text();
+        console.log("Raw Response from Supabase:", responseText);
 
-                if (!responseText) {
-                    throw new Error("Empty response from server.");
-                }
-
-                const result = JSON.parse(responseText);
-                console.log("Response from Supabase:", result);
-
-                if (response.ok) {
-                    alert("Registration submitted successfully!");
-                    document.getElementById("registration-form").reset();
-                } else {
-                    alert("Error submitting registration: " + JSON.stringify(result));
-                }
-
-            } catch (error) {
-                console.error("Error submitting registration:", error);
-                alert("Error submitting registration. Please check the console for details.");
-            }
+        if (!response.ok) {
+            throw new Error(`HTTP Error ${response.status}: ${response.statusText}`);
         }
+
+        // Ensure we handle cases where Supabase sends an empty response
+        if (!responseText.trim()) {
+            alert("Registration submitted successfully, but the server returned an empty response.");
+            document.getElementById("registration-form").reset();
+            return;
+        }
+
+        const result = JSON.parse(responseText);
+        console.log("Parsed Response from Supabase:", result);
+
+        alert("Registration submitted successfully!");
+        document.getElementById("registration-form").reset();
+
+    } catch (error) {
+        console.error("Error submitting registration:", error);
+        alert("Error submitting registration. Check the console for details.");
+    }
+}
+
     </script>
 </head>
 <body>
