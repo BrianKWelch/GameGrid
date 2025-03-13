@@ -87,12 +87,13 @@ async function submitForm(event) {
     console.log("Submitting to Supabase:", formData);
 
     try {
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/registrations`, {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/registrations?select=*`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "apikey": SUPABASE_ANON_KEY,
-                "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+                "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+                "Prefer": "return=representation" // Ensures Supabase returns the inserted data
             },
             body: JSON.stringify(formData),
         });
@@ -122,6 +123,7 @@ async function submitForm(event) {
         alert("Error submitting registration. Check the console for details.");
     }
 }
+
 
     </script>
 </head>
