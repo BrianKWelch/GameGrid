@@ -87,19 +87,14 @@
             
             console.log("Form Data:", formData);
             
-   fetch("https://script.google.com/macros/s/AKfycbwV_SEQX-xCElXDyQE84c5c2KhYA6OMrFIGgP3XpWFY3QeCHD74PimBU8EnPw0uUJq4/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbz5FhMItDp_By65kCL7T9VsF8piXp3u1VgKaH3RPgnJMYcyevWN3G4VPtAzPn4iTNRm/exec", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+        "Content-Type": "application/json"
+    },
     body: JSON.stringify(formData)
 })
-.then(response => response.text())
-.then(text => {
-    try {
-        return JSON.parse(text);
-    } catch (error) {
-        throw new Error("Invalid JSON response");
-    }
-})
+.then(response => response.json())
 .then(data => {
     console.log("Response received:", data);
     if (data.status === "success") {
@@ -113,6 +108,7 @@
     console.error("Error submitting registration:", error);
     alert("Error submitting registration. Please try again.");
 });
+
 
 
         }
