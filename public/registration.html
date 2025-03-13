@@ -87,14 +87,14 @@
             
             console.log("Form Data:", formData);
             
-  fetch("https://script.google.com/macros/s/AKfycbwQNZolgK9WQ3_OD_Qfhd-xRUk1aiHnaXsTefJ8bbN66fCCkGWt5OgouBNDU-3Vo6vw/exec", {
+ fetch("https://script.google.com/macros/s/AKfycbyjBBgaF6LhU1snb6DU_VMvDqupx4dCUh5CiZqA-rBo3KjA26IlrQlqSa36dJlyaHIE/exec", {
     method: "POST",
-    headers: { 
-        "Content-Type": "application/json"
+    headers: {
+        "Content-Type": "application/json",
     },
     body: JSON.stringify(formData)
 })
-.then(response => response.json())
+.then(response => response.json()) 
 .then(data => {
     console.log("Response received:", data);
     if (data.status === "success") {
@@ -108,6 +108,7 @@
     console.error("Error submitting registration:", error);
     alert("Error submitting registration. Please try again.");
 });
+
 
 
 
