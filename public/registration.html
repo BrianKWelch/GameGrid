@@ -64,53 +64,55 @@
         }
     </style>
     <script>
-        function submitForm(event) {
-            const SUPABASE_URL = "https://xexynghytnzghcespiod.supabase.co"; // Replace with your Supabase URL
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhleHluZ2h5dG56Z2hjZXNwaW9kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE4MzAyMTAsImV4cCI6MjA1NzQwNjIxMH0.tUdQFoIvb1ba4y_qHKB6K3EHUAFcFGoUnsdLDRXgyb4"; // Replace with your Anon Key
+        const SUPABASE_URL = "https://xexynghytnzghcespiod.supabase.co"; // Replace with your Supabase URL
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhleHluZ2h5dG56Z2hjZXNwaW9kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE4MzAyMTAsImV4cCI6MjA1NzQwNjIxMH0.tUdQFoIvb1ba4y_qHKB6K3EHUAFcFGoUnsdLDRXgyb4"; // Replace with your Supabase Anon Key
 
-async function submitForm(event) {
-    event.preventDefault();
+        async function submitForm(event) {
+            event.preventDefault();
 
-    const formData = {
-        first_name: document.getElementById('player-first-name').value,
-        last_name: document.getElementById('player-last-name').value,
-        nickname: document.getElementById('player-nickname').value,
-        phone_number: document.getElementById('player-phone').value,
-        city: document.getElementById('player-city').value,
-        partner_first_name: document.getElementById('partner-first-name').value,
-        partner_last_name: document.getElementById('partner-last-name').value,
-        tournaments: Array.from(document.querySelectorAll("input[name='tournament[]']:checked")).map(el => el.value),
-    };
+            const formData = {
+                first_name: document.getElementById('player-first-name').value.trim(),
+                last_name: document.getElementById('player-last-name').value.trim(),
+                nickname: document.getElementById('player-nickname').value.trim(),
+                phone_number: document.getElementById('player-phone').value.trim(),
+                city: document.getElementById('player-city').value,
+                partner_first_name: document.getElementById('partner-first-name').value.trim(),
+                partner_last_name: document.getElementById('partner-last-name').value.trim(),
+                partner_nickname: document.getElementById('partner-nickname').value.trim(),
+                partner_phone: document.getElementById('partner-phone').value.trim(),
+                partner_city: document.getElementById('partner-city').value,
+                tournaments: Array.from(document.querySelectorAll("input[name='tournament[]']:checked"))
+                    .map(el => el.value),
+            };
 
-    console.log("Submitting to Supabase:", formData);
+            console.log("Submitting to Supabase:", formData);
 
-    try {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/registrations`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "apikey": SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${SUPABASE_ANON_KEY}"
-        },
-        body: JSON.stringify(formData),
-    });
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/registrations`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apikey": SUPABASE_ANON_KEY,
+                        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+                    },
+                    body: JSON.stringify(formData),
+                });
 
-    const result = await response.json();
-    console.log("Response from Supabase:", result);
+                const result = await response.json();
+                console.log("Response from Supabase:", result);
 
-   alert("Registration submitted successfully!");
-        document.getElementById("registration-form").reset();
-    } catch (error) {
-        console.error("Error submitting registration:", error);
-        alert("Error submitting registration. Please check the console for details.");
-    }
+                if (response.ok) {
+                    alert("Registration submitted successfully!");
+                    document.getElementById("registration-form").reset();
+                } else {
+                    alert("Error submitting registration: " + JSON.stringify(result));
+                }
 
-
-
-
-
-
-        
+            } catch (error) {
+                console.error("Error submitting registration:", error);
+                alert("Error submitting registration. Please check the console for details.");
+            }
+        }
     </script>
 </head>
 <body>
@@ -148,13 +150,13 @@ async function submitForm(event) {
             <label for="partner-last-name">Partner's Last Name:</label>
             <input type="text" id="partner-last-name" name="partner-last-name" required>
 
-             <label for="partner-nickname">Partner's Nickname:</label>
-            <input type="text" id="partner-nickname" name="partner-nickname" >
+            <label for="partner-nickname">Partner's Nickname:</label>
+            <input type="text" id="partner-nickname" name="partner-nickname">
 
-             <label for="partner-phone">Partner's phone:</label>
+            <label for="partner-phone">Partner's Phone:</label>
             <input type="text" id="partner-phone" name="partner-phone" required>
 
-             <label for="partner-city">Partner's City:</label>
+            <label for="partner-city">Partner's City:</label>
             <select id="partner-city" name="partner-city" required>
                 <option value="chicago">Chicago</option>
                 <option value="detroit">Detroit</option>
